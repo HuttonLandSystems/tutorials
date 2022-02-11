@@ -38,7 +38,7 @@ Say for example that you'd like to extract data or calculate new data using the 
 
 ### [Interactive Jobs](https://help.cropdiversity.ac.uk/slurm-overview.html#interactive-jobs)
 
-For small extractive jobs or quick calculations, you can begin an interactive session using Slurm with the command ```srsh```. This starts a remote shell on a compute node with a default 1.5 GB and 1 CPU alocated to you (although you can alter these defaults if need be). You'll see that your home directory is no longer @gruffalo but at @n19-192-crossbones (e.g.).
+For small extractive jobs or quick calculations, you can begin an interactive session using Slurm with the command ```srsh```. This starts a remote shell on a compute node with a default 1.5 GB and 1 CPU alocated to you (although you can alter these defaults if need be). You'll see that your home directory is no longer @gruffalo but at @n19-192-crossbones (e.g.). Keyword ```exit``` will stop your interactive session.
 
 
 ### [Batch Jobs](https://help.cropdiversity.ac.uk/slurm-overview.html#batch-jobs)
