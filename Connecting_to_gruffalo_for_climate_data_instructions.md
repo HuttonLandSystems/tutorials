@@ -96,5 +96,7 @@ A typical command is made up of:
 
 ```echo $variable``` - same as print()
 
+```clear``` cleans up console (keeps variables in memory)
+
 <i>Remember if you're stuck or are unsure of which flags to use, look at the ```man``` pages</i>
 
