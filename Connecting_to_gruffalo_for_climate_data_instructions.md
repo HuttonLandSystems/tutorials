@@ -27,9 +27,10 @@ This is good for running basic ```SQL``` queries against the database to see the
 cd $PROJECTS/jhi/misc/202107_ukcp18_downsample
 
 # use sqlite3 to select from the db
-sqlite3 ukcp18_1km_corrected.db "select * from ukcp18_1km_downscaleandcorrect_uk where id_1km = 1 and year = 1981;"
+sqlite3 ukcp18_1km_corrected.db "select * from ukcp18_1km_downscaleandcorrect_uk where id_1km = 1 and year = 1981 limit 1;"
 ```
-If you are running an interactive sqlite3 session, remember to end all your queries with ```;```
+
+If you are running an interactive sqlite3 session with ```sqlite3```, remember to end all your queries with ```;```. Here are [some of the most important commands to know](https://www.sqlitetutorial.net/sqlite-commands/) in sqlite.
 
 
 ## extract data 
@@ -48,20 +49,20 @@ Because of the db's size (3TB), you will have to find a way to automate your que
 ```bash
 #!/bin/bash 
 #SBATCH --job-name="testjob"
+#SBATCH --partition=short
 #SBATCH --mem=2GB
-#SBATCH --partition=long
 #SBATCH --cpus-per-task=2
 #SBATCH --mail-user=first.last@hutton.ac.uk
 #SBATCH --mail-type=END,FAIL
 #SBATCH --chdir=$SCRATCH/directoryname/
 
 # this is a normal comment in your code
-
-# this will give your script a 120 second delay before starting
-sleep 120
+sleep 120 # this will give your script a 120 second delay before starting
 
 variable="Hello World!"
 echo $variable
+echo You can also echo without quotes 
+echo `date` is very handy for keeping track of how your jobs are going.
 ```
 
 Save this script as a ```test.sh``` and run it with ```sbatch test.sh```
@@ -73,9 +74,9 @@ Things that begin with a # are a comment. Those that begin with #SBATCH are a sp
 
 
 ## quick hints 
-* there is no such thing as Ctr+C and Ctrl+V to Copy and Paste into the shell. If you have something copied to your clickboard, click the middle mouse button to paste.
+* Ctr+C and Ctrl+V to Copy and Paste into the shell WILL NOT WORK. If you have something copied to your clickboard, click the middle mouse button to paste. 
 * if you ever find yourself stuck in the interface, use Ctrl+C or Ctrl+D. These are typical keyboard interrupts.
-* If you find that you have a long running interactive script, you can send it to the background so you have access to the shell once more. There are two ways to do this. If you have already submitted the job, Ctrl+Z will pause the job and then ```bg``` will send it to the background. The second way is <i>before</i> you submit your job, you can end your command in a ```&``` and it will automatically send it to the background. You can check the status of any job running in the background with the ```jobs``` command.
+* If you find that you have a long running interactive script, you can send it to the background so you have access to the shell once more. There are two ways to do this. If you have already submitted the job, Ctrl+Z will pause the job and then ```bg``` will send it to the background. The second way is <i>before</i> you submit your job, you can end your command in a ```&``` and it will automatically send it to the background. You can check the status of any job running in the background with the ```jobs``` and ```ps``` commands.
 
 
 ## essential commands to know
@@ -94,9 +95,11 @@ A typical command is made up of:
 
 ```variable='Hello World!'``` - assign a variable (very important that there are no spaces between the variable and the definition)
 
-```echo $variable``` - same as print()
+```echo $variable``` - same as print() in other languages; prints to console
 
-```clear``` cleans up console (keeps variables in memory)
+```clear``` cleans up console (but keeps variables in memory)
+
+```Ctrl+U``` clears whatever you've written in the command line so far
 
 <i>Remember if you're stuck or are unsure of which flags to use, look at the ```man``` pages</i>
 
